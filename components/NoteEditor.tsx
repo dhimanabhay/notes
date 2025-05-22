@@ -17,14 +17,14 @@ interface NoteEditorProps {
 const NoteEditor = ({ note, onCancel, onSave }: NoteEditorProps) => {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
-  const [updatedAt, setUpdateAt] = useState(note.updatedAt);
+  // const [updatedAt, setUpdateAt] = useState(note.updatedAt);
 
   const handleSave = () => {
     onSave({
       ...note,
       title: title.trim() || "Untitled Note",
       content,
-      updatedAt,
+      updatedAt: Date.now(),
     });
   };
 
@@ -37,9 +37,7 @@ const NoteEditor = ({ note, onCancel, onSave }: NoteEditorProps) => {
           placeholder="Note Title"
           className="text-xl font-bold border-none px-0 focus-visible:ring-0"
         />
-        <p>
-          Updated at {formatTime(updatedAt)} on {formatDate(updatedAt)}
-        </p>
+        <p>Created at {formatTime(note.createdAt)}</p>
       </CardHeader>
       <CardContent>
         <Textarea
