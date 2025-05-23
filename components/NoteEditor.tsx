@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { formatDate, formatTime } from "@/lib/storage";
+import { formatTime } from "@/lib/storage";
 import { Button } from "./ui/button";
 import { Save, X } from "lucide-react";
 
