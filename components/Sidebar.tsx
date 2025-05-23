@@ -12,7 +12,7 @@ interface SidebarProps {
 
 const Sidebar = ({ notes, onSelectNote }: SidebarProps) => {
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
         <CardTitle>Notes</CardTitle>
       </CardHeader>

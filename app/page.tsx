@@ -5,6 +5,7 @@ import { Note } from "@/lib/types";
 import { useState } from "react";
 import NoteView from "@/components/NoteView";
 import NoteEditor from "@/components/NoteEditor";
+import EmptyNotesList from "@/components/EmptyNotesList";
 
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -40,20 +41,31 @@ export default function Home() {
   };
 
   const renderNoteContent = () => {
+    if (!activeNote && notes.length === 0) {
+      return (
+        <EmptyNotesList
+          message="Create your first note."
+          buttonText="New Note"
+        />
+      );
+    }
+
     if (activeNote && isEditing) {
       console.log(isEditing);
       return (
         <NoteEditor onSave={saveEdit} onCancel={cancelEdit} note={activeNote} />
       );
     }
+
     if (activeNote) {
-      return <NoteView note={activeNote} />;
+      return <NoteView onEdit={() => setIsEditing(true)} note={activeNote} />;
     }
   };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header onNewNote={createNewNote} />
-      <main className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <main className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
         <div className="md:col-span-1">
           <Sidebar notes={notes} onSelectNote={selectNote} />
         </div>
