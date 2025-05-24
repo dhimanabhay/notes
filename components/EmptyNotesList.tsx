@@ -17,10 +17,14 @@ const EmptyNotesList = ({
       <div className="text-center p-8">
         <p className="text-muted-foreground mb-4">{message}</p>
 
-        <Button onClick={onButtonClick} className="hover:cursor-pointer">
-          <Plus className="h-4 w-4 mr-1" />
-          {buttonText}
-        </Button>
+        {buttonText !== "New Note" ? (
+          <></>
+        ) : (
+          <Button onClick={onButtonClick} className="hover:cursor-pointer">
+            <Plus className="h-4 w-4 mr-1" />
+            {buttonText}
+          </Button>
+        )}
       </div>
     </div>
   );

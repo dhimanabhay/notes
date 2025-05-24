@@ -40,12 +40,21 @@ export default function Home() {
     setIsEditing(false);
   };
 
+  const deleteNote = (id: string) => {
+    setNotes(notes.filter((note) => note.id !== id));
+    if (activeNote && activeNote.id === id) {
+      setActiveNote(null);
+      setIsEditing(false);
+    }
+  };
+
   const renderNoteContent = () => {
     if (!activeNote && notes.length === 0) {
       return (
         <EmptyNotesList
           message="Create your first note."
           buttonText="New Note"
+          onButtonClick={createNewNote}
         />
       );
     }
@@ -67,7 +76,11 @@ export default function Home() {
       <Header onNewNote={createNewNote} />
       <main className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
         <div className="md:col-span-1">
-          <Sidebar notes={notes} onSelectNote={selectNote} />
+          <Sidebar
+            notes={notes}
+            onSelectNote={selectNote}
+            onDeleteNote={deleteNote}
+          />
         </div>
         <div className="md:col-span-2">{renderNoteContent()}</div>
       </main>

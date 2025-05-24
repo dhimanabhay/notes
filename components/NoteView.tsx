@@ -16,7 +16,7 @@ interface NoteViewProps {
 
 const NoteView = ({ note, onEdit }: NoteViewProps) => {
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
         <CardTitle>{note.title}</CardTitle>
         <p className="text-sm text-muted-foreground">
@@ -25,7 +25,7 @@ const NoteView = ({ note, onEdit }: NoteViewProps) => {
           {/* Created At: {formatDate(note.createdAt)} */}
         </p>
       </CardHeader>
-      <CardContent className="min-h-[calc(100vh-350px)] ">
+      <CardContent className="min-h-[calc(90vh-200px)]">
         {note.content}
       </CardContent>
       <CardFooter className="flex justify-end">

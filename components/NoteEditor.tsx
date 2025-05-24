@@ -29,7 +29,7 @@ const NoteEditor = ({ note, onCancel, onSave }: NoteEditorProps) => {
   };
 
   return (
-    <Card>
+    <Card className="min-h-[calc(100vh-100px)]">
       <CardHeader>
         <Input
           value={title}
