@@ -29,22 +29,24 @@ const NoteEditor = ({ note, onCancel, onSave }: NoteEditorProps) => {
   };
 
   return (
-    <Card className="min-h-[calc(100vh-100px)]">
+    <Card className="h-full">
       <CardHeader>
         <Input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Note Title"
-          className="text-xl font-bold border-none px-0 focus-visible:ring-0"
+          className=" font-bold border-none px-0 ring-0 focus-visible:ring-0"
         />
-        <p>Created at {formatTime(note.createdAt)}</p>
+        <p className="text-sm text-muted-foreground">
+          Created at {formatTime(note.createdAt)}
+        </p>
       </CardHeader>
       <CardContent>
         <Textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Write your note..."
-          className="min-h-[calc(100vh-350px)] resize-none border-none p-0 focus-visible:ring-0"
+          className="h-[calc(90vh-200px)] resize-none border-none p-0 focus-visible:ring-0"
         />
       </CardContent>
 
