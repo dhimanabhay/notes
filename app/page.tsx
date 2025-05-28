@@ -2,15 +2,24 @@
 import Header from "@/components/header";
 import Sidebar from "@/components/Sidebar";
 import { Note } from "@/lib/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NoteView from "@/components/NoteView";
 import NoteEditor from "@/components/NoteEditor";
 import EmptyNotesList from "@/components/EmptyNotesList";
+import { loadNotes, saveNotes } from "@/lib/storage";
 
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [activeNote, setActiveNote] = useState<Note | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    setNotes(loadNotes());
+  }, []);
+
+  useEffect(() => {
+    saveNotes(notes);
+  }, [notes]);
 
   const createNewNote = () => {
     const newNote: Note = {
@@ -80,6 +89,7 @@ export default function Home() {
             notes={notes}
             onSelectNote={selectNote}
             onDeleteNote={deleteNote}
+            activeNoteId={activeNote?.id}
           />
         </div>
         <div className="md:col-span-2">{renderNoteContent()}</div>

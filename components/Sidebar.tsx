@@ -10,9 +10,15 @@ interface SidebarProps {
   notes: Note[];
   onSelectNote: (note: Note) => void;
   onDeleteNote: (id: string) => void;
+  activeNoteId?: string;
 }
 
-const Sidebar = ({ notes, onSelectNote, onDeleteNote }: SidebarProps) => {
+const Sidebar = ({
+  notes,
+  onSelectNote,
+  onDeleteNote,
+  activeNoteId,
+}: SidebarProps) => {
   return (
     <Card className="h-full">
       <CardHeader>
@@ -28,7 +34,9 @@ const Sidebar = ({ notes, onSelectNote, onDeleteNote }: SidebarProps) => {
                 <div
                   key={note.id}
                   onClick={() => onSelectNote(note)}
-                  className="py-2 rounded-md cursor-pointer hover:bg-accent transition-colors"
+                  className={`px-2 rounded-md cursor-pointer hover:bg-accent transition-colors ${
+                    activeNoteId === note.id ? "bg-accent" : ""
+                  }`}
                 >
                   <div className="flex justify-between items-center">
                     <div>
